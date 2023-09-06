@@ -7,13 +7,15 @@ import "./both.js"
 export default function App() {
   
   const windowSize = useRef([window.innerWidth, window.innerHeight]);
+  let past_scores = []
   // Backend JS
   let [msg, setmsg] = useState("Click me to start")
   let [othermsg, othersetmsg] = useState("")
   let [x, setx] = useState(0);
+  let [time, settime] = useState(5);
+  const [count, setCount] = useState(0);
   const countRef = useRef(x);
   countRef.current = x;
-  const [count, setCount] = useState(0);
   function func (x: any ) {
     
     if (msg=="Click me to start") {
@@ -21,20 +23,17 @@ export default function App() {
     }
     if (x==0) {
       
-  useEffect(() => {
-    const id = setInterval(() => setCount((oldCount) => oldCount + 1), 1000);
-
-    return () => {
-      clearInterval(id);
-    };
-  }, []);
+  
       setTimeout(() => {
-        othersetmsg(othermsg="you got " + countRef.current/5 + " cps!")
+        othersetmsg(othermsg="you got " + countRef.current/time + " cps!")
+        countRef.current=0
+        setx(x=0)
         alert("You're Done!")
       
       
       }, 5000);
     }
+    
     setx(x+=1)
   }
   function clear(x: number) {
@@ -58,9 +57,18 @@ export default function App() {
       <p></p>
       <p id='thisthing'>{x}</p>
       <button id = 'buttontwo' style={mystyle}onClick= { () => clear(x)}> Press me to clear!</button>
+      <p>{count}</p>
       <div>
         <Image src={house} alt="Picture of a house"/>
       <p>{othermsg}</p>
+      
+
+<form action="welcome.php" method="get">
+Name: <input type="text" name="name"/><br/>
+E-mail: <input type="text" name="email"/><br/>
+<input type="submit"/>
+</form>
+
       </div>
     </div>
     </>
