@@ -13,16 +13,42 @@ export default function App() {
   let [othermsg, othersetmsg] = useState("")
   let [x, setx] = useState(0);
   let [time, settime] = useState(5);
+  let timer = 0
   const [count, setCount] = useState(0);
   const countRef = useRef(x);
+  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  
+  
   countRef.current = x;
+
+  const calculateTimeLeft = () => {
+    let year = new Date().getFullYear();
+    let difference = +new Date(`10/01/${year}`) - +new Date();
+  
+    let timeRemaining = {};
+  
+    if (difference > 0) {
+      timeRemaining = {
+        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        seconds: Math.floor((difference / 1000) % 60)
+      };
+    }
+    
+    return timeRemaining;
+  }
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTimeLeft(calculateTimeLeft());
+    }, 1000);
+  });
   function func (x: any ) {
     
     if (msg=="Click me to start") {
       setmsg(msg="Press me to increase the number on screen!")
     }
     if (x==0) {
-      
   
       setTimeout(() => {
         othersetmsg(othermsg="you got " + countRef.current/time + " cps!")
@@ -36,6 +62,7 @@ export default function App() {
     
     setx(x+=1)
   }
+
   function clear(x: number) {
       setx(x=0)
   }
@@ -57,7 +84,7 @@ export default function App() {
       <p></p>
       <p id='thisthing'>{x}</p>
       <button id = 'buttontwo' style={mystyle}onClick= { () => clear(x)}> Press me to clear!</button>
-      <p>{count}</p>
+      <p>{timer}</p>
       <div>
         <Image src={house} alt="Picture of a house"/>
       <p>{othermsg}</p>
