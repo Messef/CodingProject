@@ -1,0 +1,5 @@
+.entBack {
+  @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right, #4880EC, #019CAD);  
+}
