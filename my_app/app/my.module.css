@@ -1,5 +1,6 @@
-.entBack {
-  @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+.entireBack {
   background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to right, #4880EC, #019CAD);  
+  background-image: linear-gradient(to right, #4880EC, #019CAD); 
+ 
 }

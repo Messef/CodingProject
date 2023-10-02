@@ -33,10 +33,6 @@ export default function App() {
   }
 
 
-  const fchildStyle = {
-    paddingLeft: '8%',
-  }
-
 
   return (
     
@@ -44,7 +40,7 @@ export default function App() {
 
     <link rel="icon" href="./favicon.ico" />
 
-    <body style = {entBack}> 
+    <body style = {entBack} className  = {styles.entireBack}> 
       <div style = {flex_Container}>
         <article  style = {childStyle}  >Play Now</article>
         <article  style = {childStyle}   >Puzzles</article>
